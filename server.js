@@ -2,7 +2,6 @@ require("dotenv").config();
 const express = require("express");
 const cheerio = require("cheerio");
 const puppeteer = require("puppeteer");
-const { executablePath } = require("puppeteer");
 const cors = require("cors");
 const fs = require("fs");
 const cron = require("node-cron");
@@ -17,7 +16,7 @@ app.use(express.static("public"));
 
 const scrapeFlights = async () => {
   // Recupera il percorso esatto di Chromium installato
-  const chromiumPath = executablePath();
+  const chromiumPath = "/opt/render/.cache/puppeteer/chrome/linux-127.0.6533.88/chrome-linux64/chrome";
 
   console.log("✅ Chromium trovato in:", chromiumPath);
 
