@@ -16,6 +16,7 @@ app.use(express.static("public"));
 
 const scrapeFlights = async () => {
   const browser = await puppeteer.launch({
+    executablePath: "/usr/bin/google-chrome-stable",
     headless: "new",
     args: [
       "--no-sandbox",
