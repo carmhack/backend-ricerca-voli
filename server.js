@@ -15,7 +15,21 @@ app.use(express.json());
 app.use(express.static("public"));
 
 const scrapeFlights = async () => {
+  // Recupera il percorso esatto di Chromium installato
+  const browserFetcher = puppeteer.createBrowserFetcher();
+  const localChromium = await browserFetcher.localRevisions();
+  const chromiumPath = localChromium.length > 0 
+    ? await browserFetcher.revisionInfo(localChromium[0]).executablePath 
+    : null;
+
+  if (!chromiumPath) {
+    throw new Error("❌ Impossibile trovare Chromium!");
+  }
+
+  console.log("✅ Chromium trovato in:", chromiumPath);
+
   const browser = await puppeteer.launch({
+    executablePath: chromiumPath,
     headless: "new",
     args: [
       "--no-sandbox",
