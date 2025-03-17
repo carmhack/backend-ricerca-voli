@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const cheerio = require("cheerio");
-const puppeteer = require("puppeteer");
+const puppeteer = require("puppeteer-core");
 const cors = require("cors");
 const fs = require("fs");
 const cron = require("node-cron");
@@ -16,7 +16,7 @@ app.use(express.static("public"));
 
 const scrapeFlights = async () => {
   const browser = await puppeteer.launch({
-    executablePath: "/usr/bin/google-chrome-stable",
+    executablePath: "/usr/bin/chromium-browser",
     headless: "new",
     args: [
       "--no-sandbox",
