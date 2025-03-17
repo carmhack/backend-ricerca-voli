@@ -16,14 +16,11 @@ app.use(express.static("public"));
 
 const scrapeFlights = async () => {
   // Recupera il percorso esatto di Chromium installato
-  const browserFetcher = puppeteer.createBrowserFetcher();
-  const localChromium = await browserFetcher.localRevisions();
-  const chromiumPath = localChromium.length > 0 
-    ? await browserFetcher.revisionInfo(localChromium[0]).executablePath 
-    : null;
+  const chromiumPath = path.join(process.cwd(), "node_modules", "puppeteer", ".local-chromium", "linux-127.0.6533.88", "chrome-linux", "chrome");
 
-  if (!chromiumPath) {
-    throw new Error("❌ Impossibile trovare Chromium!");
+  if (!fs.existsSync(chromiumPath)) {
+    console.error("❌ Chromium non trovato nel percorso:", chromiumPath);
+    throw new Error("Chromium non installato correttamente.");
   }
 
   console.log("✅ Chromium trovato in:", chromiumPath);
