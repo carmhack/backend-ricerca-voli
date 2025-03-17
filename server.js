@@ -27,7 +27,7 @@ const scrapeFlights = async () => {
   const page = await browser.newPage();
 
   console.log("🌍 Navigo alla pagina...");
-  await page.goto(URL, { waitUntil: "networkidle2" });
+  await page.goto("https://www.aeroportosalerno.it/voli-diretti", { waitUntil: "networkidle2" });
 
   // 📌 Step 1: Chiudere il banner dei cookie SE ESISTE
   const cookieButton = await page.$("#CybotCookiebotDialogBodyLevelButtonLevelOptinAllowallSelection");
@@ -128,7 +128,7 @@ app.get("/api/data", (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`🚀 Server in ascolto su http://localhost:${PORT}`);
+app.listen(3000, () => {
+  console.log(`🚀 Server in ascolto su http://localhost:3000`);
   scrapeFlights();
 });
