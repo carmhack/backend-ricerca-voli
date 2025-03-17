@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
-    "postinstall": "apt-get update && apt-get install -y chromium-browser"
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
@@ -17,9 +16,6 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "node-cron": "^3.0.3",
-    "puppeteer-core": "^24.4.0"
-  },
-  "env": {
-    "PUPPETEER_SKIP_DOWNLOAD": "true"
+    "puppeteer": "^22.0.0"
   }
 }
