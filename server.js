@@ -15,13 +15,7 @@ app.use(express.json());
 app.use(express.static("public"));
 
 const scrapeFlights = async () => {
-  // Recupera il percorso esatto di Chromium installato
-  const chromiumPath = "/opt/render/.cache/puppeteer/chrome/linux-127.0.6533.88/chrome-linux64/chrome";
-
-  console.log("✅ Chromium trovato in:", chromiumPath);
-
   const browser = await puppeteer.launch({
-    executablePath: chromiumPath,
     headless: "new",
     args: [
       "--no-sandbox",
